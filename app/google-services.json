@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "197301035330",
+    "project_id": "himalaya-a9e8f",
+    "storage_bucket": "himalaya-a9e8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197301035330:android:65fbdcb422b615a6df28db",
+        "android_client_info": {
+          "package_name": "com.service.himalaya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197301035330-t5049abuabp790do37c1ffbeufkplcrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyWw71S2GPC1buX5sqUO8QUExS13XFvjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197301035330-t5049abuabp790do37c1ffbeufkplcrj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

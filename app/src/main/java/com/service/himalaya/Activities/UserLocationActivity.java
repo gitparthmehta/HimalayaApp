@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +59,10 @@ public class UserLocationActivity extends AppCompatActivity implements OnMapRead
     Boolean isprocessing = false;
     Timer timer;
     TimerTask hourlyTask;
-    String android_id="";
+    String android_id = "";
+    TextView nodataTxt;
+    RelativeLayout mapLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +120,8 @@ public class UserLocationActivity extends AppCompatActivity implements OnMapRead
 
         username_txt = findViewById(R.id.username_txt);
         back = findViewById(R.id.back);
+        nodataTxt = findViewById(R.id.nodataTxt);
+        mapLayout = findViewById(R.id.mapLayout);
 
 
     }
@@ -159,6 +165,13 @@ public class UserLocationActivity extends AppCompatActivity implements OnMapRead
                             String apiMessage = response.getString("apiMessage");
 
 
+                            if (apiStatus.equals("false")){
+                                nodataTxt.setVisibility(View.VISIBLE);
+                                mapLayout.setVisibility(View.GONE);
+                            }else {
+                                nodataTxt.setVisibility(View.GONE);
+                                mapLayout.setVisibility(View.VISIBLE);
+                            }
 //                            Toast.makeText(UserLocationActivity.this, apiMessage, Toast.LENGTH_SHORT).show();
 
 
@@ -174,10 +187,34 @@ public class UserLocationActivity extends AppCompatActivity implements OnMapRead
                                     String currentDateTime = obj.getString("currentDateTime");
                                     String spentTime = obj.getString("spentTime");
 
+                                    Log.d("dealLat", dealLat);
+                                    Log.d("dealLang", dealLang);
+                                    nodataTxt.setVisibility(View.GONE);
+                                    mapLayout.setVisibility(View.VISIBLE);
                                 } else {
+                                    nodataTxt.setVisibility(View.VISIBLE);
+                                    mapLayout.setVisibility(View.GONE);
 
                                 }
+                                try {
+                                    if (dealLat.equals("null") || dealLat.isEmpty() || dealLat.equals("")) {
+                                        nodataTxt.setVisibility(View.VISIBLE);
+                                        mapLayout.setVisibility(View.GONE);
+                                    }
+                                } catch (NullPointerException e) {
+                                    nodataTxt.setVisibility(View.VISIBLE);
+                                    mapLayout.setVisibility(View.GONE);
+                                }
 
+                                try {
+                                    if (dealLang.equals("null") || dealLang.isEmpty() || dealLang.equals("")) {
+                                        nodataTxt.setVisibility(View.VISIBLE);
+                                        mapLayout.setVisibility(View.GONE);
+                                    }
+                                } catch (NullPointerException e) {
+                                    nodataTxt.setVisibility(View.VISIBLE);
+                                    mapLayout.setVisibility(View.GONE);
+                                }
                                 mapFragment.getMapAsync(UserLocationActivity.this);
 
                             }
@@ -211,14 +248,14 @@ public class UserLocationActivity extends AppCompatActivity implements OnMapRead
     @Override
     public void onMapReady(GoogleMap googleMap) {
         try {
-            if (dealLat.equals("null")) {
+            if (dealLat.equals("null") || dealLat.isEmpty()) {
                 dealLat = "0";
             }
         } catch (NullPointerException e) {
             dealLat = "0";
         }
         try {
-            if (dealLang.equals("null")) {
+            if (dealLang.equals("null") || dealLang.isEmpty()) {
                 dealLang = "0";
             }
         } catch (NullPointerException e) {

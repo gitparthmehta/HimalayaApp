@@ -288,19 +288,20 @@ public class WorkerActivity extends AppCompatActivity {
 
                     try {
                         addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                        address = addresses.get(0).getAddressLine(0);
+                        locality = addresses.get(0).getSubLocality();
+                        city = addresses.get(0).getLocality();
+
+                        str_lattitude = String.valueOf(latitude);
+                        str_longitude = String.valueOf(longitude);
+
+                        Log.d("str_lattitude", str_lattitude);
+                        Log.d("str_longitude", str_longitude);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
-                    address = addresses.get(0).getAddressLine(0);
-                    locality = addresses.get(0).getSubLocality();
-                    city = addresses.get(0).getLocality();
 
-                    str_lattitude = String.valueOf(latitude);
-                    str_longitude = String.valueOf(longitude);
-
-                    Log.d("str_lattitude", str_lattitude);
-                    Log.d("str_longitude", str_longitude);
 
                 }
                 SaveLocation(true, false);

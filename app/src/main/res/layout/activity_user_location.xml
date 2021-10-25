@@ -46,10 +46,12 @@
         android:textSize="20sp" />
 
     <RelativeLayout
+        android:id="@+id/mapLayout"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_below="@+id/username_txt"
-        android:background="#fff">
+        android:background="#fff"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/transparent_image"
@@ -74,5 +76,14 @@
             tools:context=".UserLocationActivity" />
     </RelativeLayout>
 
-
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/nodataTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="No Data Avilable"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </RelativeLayout>
